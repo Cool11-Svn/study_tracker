@@ -14,6 +14,5 @@ The program creates a json file so do not try to manually edit it - or you will 
 
 
 ## ⚠️ Important note 
-
-The most important thing is - when trying interract with already existing list - be precise with your inputs.
-I made the matching conditions pretty strict.
+App was written by beginner coder - there might be something that does not work the way you might expect.
+Other than that - it is a working application.
