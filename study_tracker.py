@@ -80,6 +80,19 @@ def get_valid_text(the_input):
            
         except EOFError:
             print("No input received. Try again.")
+def get_valid_time(the_input):
+   while True:
+      try:
+         time_str = input(the_input).strip()
+         if time_str =='b':
+            return 'b'
+         datetime.datetime.strptime(time_str,'%H:%M')
+         return time_str
+      except ValueError:
+          print("Wrong input ")
+      except EOFError:
+          print("No input received. Try again.")
+                
 
 def main():
 
@@ -118,10 +131,14 @@ def main():
          print('Enter correct date')
       except EOFError:
          print("No input received. Try again.")
+     time=get_valid_time("Enter valid time in HH:MM format: ")
+     if time == 'b':
+        return
                   
      note =  full_input('Write some notes about the subject: ')
      if note =='b':
        return
+     
 
      All_sessions.append({
          
@@ -129,6 +146,7 @@ def main():
          'direction': direction,
          'duration': duration,
          'date': date_object,
+         'time':time,
          'note': note
      })
      save_list()
@@ -145,18 +163,21 @@ def main():
       else:
        print('Choose from given options ')
        
-   
-
 
   def show_study_list(All_sessions):
+     def sort_key(session):
+        return (session["date"], session["time"])
 
-     for i,subject in enumerate(All_sessions,start =1):
+     sorted_sessions = sorted(All_sessions, key=sort_key, reverse=False)
+
+     for i,subject in enumerate(sorted_sessions,start =1):
         print("\n----------------------")
         print(f"Id: {i}")
         print(f"Subject: {subject['subject']}")
         print(f"Direction: {subject['direction']}")
         print(f"Duration: {subject['duration']} min")
         print(f"Date: {subject['date'].date()}")
+        print(f"Time: {subject['time']}")
         print(f"Note: {subject['note']}")
         print()
 
@@ -206,12 +227,12 @@ def main():
     if subject_id == 'b':
         return
 
-    right_choices = ['subject', 'direction', 'duration', 'date', 'note']
+    right_choices = ['subject', 'direction', 'duration', 'date','time','note']
 
     while True:
 
         field = input(
-            'Enter field to edit (subject|direction|duration|date|note): '
+            'Enter field to edit (subject|direction|duration|date|time|note): '
         ).lower().strip()
 
         if field == 'b':
@@ -247,6 +268,10 @@ def main():
         new_value = get_positive_int('Enter new duration value: ')
         if new_value == 'b':
             return
+    elif field == 'time':
+       new_value = get_valid_time('Enter new time value: ')   
+       if new_value =='b':
+          return 
 
     elif field == 'date':
 

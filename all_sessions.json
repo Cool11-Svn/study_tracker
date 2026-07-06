@@ -4,13 +4,23 @@
         "direction": "geometry",
         "duration": 45,
         "date": "2026-06-06",
-        "note": "smth"
+        "time": "12:00",
+        "note": "something"
     },
     {
         "subject": "math",
         "direction": "geometry",
-        "duration": 45,
-        "date": "2026-08-08",
-        "note": "smth"
+        "duration": 55,
+        "date": "2026-09-09",
+        "time": "13:00",
+        "note": "something"
+    },
+    {
+        "subject": "math",
+        "direction": "calculus",
+        "duration": 50,
+        "date": "2026-06-07",
+        "time": "1:00",
+        "note": "some notes"
     }
 ]
